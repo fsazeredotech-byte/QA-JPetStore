@@ -47,7 +47,7 @@
 | PS-TC-001 | Não aceita User ID já existente | REQ-001 | 🟠 Alta | ❌ Falhou (BUG-001) |
 | PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou nas 3 variações (BUG-002) |
 | PS-TC-003 | Aceita letras e números — cadastro e login | REQ-002 | 🔴 Crítica | ✅ Passou |
-| PS-TC-004 | Não aceita User ID vazio | Q-01 | 🟠 Alta | ⏳ |
+| PS-TC-004 | Não aceita User ID vazio | Q-01 | 🟠 Alta | ❌ Falhou sob Q-01 (BUG-004) |
 | PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ⏳ |
 | PS-TC-006 | Não aceita letras acentuadas | REQ-002 / Q-02 | 🟡 Média | ⏳ |
 | PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ⏳ |
@@ -103,8 +103,10 @@
 | **Requisito** | Premissa Q-01 · 🟠 Alta |
 | **Passos** | 1. Abrir o formulário de cadastro.<br>2. Deixar o User ID em branco.<br>3. Preencher os demais campos com dados válidos.<br>4. Clicar em **Save Account Information**. |
 | **Resultado esperado** | O sistema exibe um erro informando que o User ID é obrigatório, e a conta não é criada. |
-| **Resultado atual** | |
-| **Status / Evidência** | ⏳ · `evidencias/PS-TC-004.png` |
+| **Dado usado** | User ID vazio (conferido: nenhum caractere) · dados fictícios do documento · senha de teste (não publicada) |
+| **Resultado atual** | O formulário voltou com os dados preenchidos e o cadastro não foi concluído na interface, mas **nenhuma mensagem de erro apareceu**. No código da página, o campo User ID recebeu `class="error"`, sem destaque visível. |
+| **Data da execução** | 03/11/2026 14:38 · A01 |
+| **Status / Evidência** | ❌ **Falhou sob a premissa Q-01** → [BUG-004](../bug-reports/BUG-004.md) · [01](../evidencias/PS-TC-004_20261103_143800_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-004_20261103_143800_T01_02-depois-salvar.jpg) |
 
 ## PS-TC-005 — Não aceita espaços *(premissa Q-04)*
 | Campo | Descrição |
