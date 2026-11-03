@@ -23,7 +23,7 @@
 | ID | Dúvida | Premissa usada até ser esclarecida |
 |---|---|---|
 | Q-01 | O User ID é obrigatório? (o requisito não diz) | Sim, é obrigatório (PS-TC-004). |
-| Q-02 | "Letras latinas" inclui letras acentuadas (á, ç)? | Não: só `A–Z`, `a–z` e `0–9`. |
+| Q-02 | "Letras latinas" inclui letras acentuadas (á, ç)? | Não: só `A–Z`, `a–z` e `0–9`. **Observado no PS-TC-006: a letra acentuada foi aceita** (e exibida corrompida, BUG-005). |
 | Q-03 | `j2ee` e `J2EE` são o mesmo ID? | Sem premissa — cenário pendente (PS-TC-P01). |
 | Q-04 | Espaços no início/fim são removidos ou rejeitados? | Rejeitados. **Observado no 005-b e no 005-c (03/11/2026): os espaços do início e do fim foram removidos (trim)**; aguardando definição da regra. |
 | Q-05 | Existe tamanho mínimo/máximo para o User ID? | Não documentado — investigar com teste exploratório (PS-TC-E01). |
@@ -49,7 +49,7 @@
 | PS-TC-003 | Aceita letras e números — cadastro e login | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Q-01 | 🟠 Alta | ❌ Falhou sob Q-01 (BUG-004) |
 | PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ❌ 005-a falhou (BUG-002) · ⏸️ 005-b/c espaços das pontas removidos (Q-04) · ❌ 005-d recusa silenciosa (BUG-004) |
-| PS-TC-006 | Não aceita letras acentuadas | REQ-002 / Q-02 | 🟡 Média | ⏳ |
+| PS-TC-006 | Não aceita letras acentuadas | REQ-002 / Q-02 | 🟡 Média | ❌ Falhou sob Q-02 (BUG-002) · BUG-005 |
 | PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ⏳ |
 | PS-TC-008 | Aceita User ID só com letras | REQ-002 / Q-06 | 🟡 Média | ⏳ |
 | PS-TC-009 | Aceita User ID só com números | REQ-002 / Q-06 | 🟡 Média | ⏳ |
@@ -132,8 +132,11 @@
 | **Requisito** | PS-REQ-002 / Q-02 · 🟡 Média |
 | **Passos** | Os mesmos do PS-TC-002, com o dado `Usuário1`. |
 | **Resultado esperado** | O sistema exibe um erro informando que o User ID deve conter apenas letras (A–Z) e números, e a conta não é criada. |
-| **Resultado atual** | |
-| **Status / Evidência** | ⏳ · conforme o protocolo |
+| **Dado usado** | `Usuário11031540` (15 caracteres, com `á`, conferido no código da página) · dados fictícios · senha de teste (não publicada) |
+| **Resultado atual** | Após salvar: página principal com Sign In, **sem mensagem de erro**. Login com `Usuário11031540` autenticado ("Welcome Teste!"). My Account exibe **`UsuÃ¡rio11031540`**: a conta foi criada com a letra acentuada, mas o `á` aparece corrompido (ver [BUG-005](../bug-reports/BUG-005.md)). |
+| **Data da execução** | 03/11/2026 15:41 · A01 |
+| **Execução** | Campos fictícios pelo Claude; User ID, senha, Save e login pelo testador; prints com data e hora pelo Claude. |
+| **Status / Evidência** | ❌ **Falhou sob a premissa Q-02** (a letra acentuada foi aceita) → [BUG-002](../bug-reports/BUG-002.md) · achado adicional → [BUG-005](../bug-reports/BUG-005.md) · [01](../evidencias/PS-TC-006_20261103_154115_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-006_20261103_154115_T01_02-depois-salvar.jpg) · [03](../evidencias/PS-TC-006_20261103_154115_T01_03-antes-login.jpg) · [04](../evidencias/PS-TC-006_20261103_154115_T01_04-depois-login.jpg) · [05](../evidencias/PS-TC-006_20261103_154115_T01_05-my-account.jpg) |
 
 ## PS-TC-007 — Não aceita alfabeto não latino
 | Campo | Descrição |
