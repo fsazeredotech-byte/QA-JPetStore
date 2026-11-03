@@ -29,7 +29,7 @@ QA-JPetStore/
 ├── casos-de-teste/
 │   └── casos-de-teste-cadastro.md     ← casos de teste manuais
 ├── evidencias/                        ← prints da execução
-└── bug-reports/                       ← relatórios de bugs (BUG-001 a BUG-005)
+└── bug-reports/                       ← relatórios de bugs (BUG-001 a BUG-006)
     └── modelo-bug-report.md           ← modelo usado nos relatórios
 ```
 
@@ -39,7 +39,7 @@ QA-JPetStore/
 
 | ✅ Passou | ❌ Falhou | ⏳ A executar | ⏸️ Pendente | 🐞 Bugs abertos |
 |---|---|---|---|---|
-| 1 caso (003) | 6 casos (001; 002; 004 e 006 sob premissa; 005 nas variações a e d; 007) | 3 casos (008, 009, E01) | 1 (P01) + 005-b/c (Q-04) | 5 |
+| 3 casos (003; 008 e 009 sob premissa) | 6 casos (001; 002; 004 e 006 sob premissa; 005 nas variações a e d; 007) | 0 — **execução concluída** (+ E01 exploratório executado) | 1 (P01) + 005-b/c (Q-04) | 6 |
 
 ## ✅ Resumo dos casos de teste (versão 3.2)
 
@@ -52,10 +52,10 @@ QA-JPetStore/
 | PS-TC-005 | Não aceita espaços | REQ-002 | 🟡 Média | ❌ 005-a falhou → [BUG-002](bug-reports/BUG-002.md) · ⏸️ 005-b/c: espaços das pontas removidos (dúvida Q-04) · ❌ 005-d → [BUG-004](bug-reports/BUG-004.md) |
 | PS-TC-006 | Não aceita letras acentuadas | Premissa Q-02 | 🟡 Média | ❌ Falhou sob a premissa → [BUG-002](bug-reports/BUG-002.md) · [BUG-005](bug-reports/BUG-005.md) |
 | PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ❌ Falhou → [BUG-002](bug-reports/BUG-002.md) · [BUG-005](bug-reports/BUG-005.md) |
-| PS-TC-008 | Aceita User ID só com letras | REQ-002 | 🟡 Média | ⏳ A executar |
-| PS-TC-009 | Aceita User ID só com números | REQ-002 | 🟡 Média | ⏳ A executar |
+| PS-TC-008 | Aceita User ID só com letras | Premissa Q-06 | 🟡 Média | ✅ Passou sob a premissa |
+| PS-TC-009 | Aceita User ID só com números | Premissa Q-06 | 🟡 Média | ✅ Passou sob a premissa |
 | PS-TC-P01 | Unicidade com maiúsculas/minúsculas | REQ-001 | 🟡 Média | ⏸️ Pendente de esclarecimento |
-| PS-TC-E01 | Exploratório: User ID muito longo | — | 🟢 Baixa | ⏳ A executar |
+| PS-TC-E01 | Exploratório: User ID muito longo | Q-05 | 🟢 Baixa | 🔍 Executado → [BUG-006](bug-reports/BUG-006.md) |
 
 🔄 **Os casos passaram por revisão por pares.** Veja em [`REVISOES.md`](REVISOES.md) os erros encontrados na versão 1, as correções e o que aprendi.
 
@@ -70,6 +70,7 @@ Detalhes completos em [`casos-de-teste/casos-de-teste-cadastro.md`](casos-de-tes
 | [BUG-003](bug-reports/BUG-003.md) | Campos de senha do cadastro mostram a senha em texto visível | 🟡 Minor | 🟠 Alta | Exploratório |
 | [BUG-004](bug-reports/BUG-004.md) | User ID vazio ou só com espaços é recusado sem nenhuma mensagem de erro | 🟡 Minor | 🟡 Média | PS-TC-004, 005-d |
 | [BUG-005](bug-reports/BUG-005.md) | User ID com acento ou chinês é exibido corrompido na My Account | 🟡 Minor | 🟡 Média | PS-TC-006, 007 |
+| [BUG-006](bug-reports/BUG-006.md) | User ID com 50 caracteres causa erro 500 com SQL exposto | 🟠 Major | 🟡 Média | PS-TC-E01 |
 
 ## 🤝 Como este projeto foi feito
 
@@ -92,9 +93,10 @@ As revisões entre as duas IAs, e o que mudou por causa delas, estão registrada
 
 ## 🚀 Próximos passos
 
-- [x] Registrar bugs reais encontrados (5 até agora)
+- [x] Registrar bugs reais encontrados (6)
 - [x] Criar protocolo de execução
-- [ ] Concluir a execução dos casos restantes seguindo o protocolo
+- [x] Concluir a execução dos casos seguindo o protocolo (03/11/2026)
+- [ ] Esclarecer as dúvidas Q-02 a Q-06 e P01 e reexecutar o PS-TC-003 com dados fictícios
 - [ ] Automatizar os casos com Playwright
 - [ ] Testar login e carrinho de compras
 

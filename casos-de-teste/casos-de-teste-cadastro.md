@@ -26,7 +26,7 @@
 | Q-02 | "Letras latinas" inclui letras acentuadas (á, ç)? | Não: só `A–Z`, `a–z` e `0–9`. **Observado no PS-TC-006: a letra acentuada foi aceita** (e exibida corrompida, BUG-005). |
 | Q-03 | `j2ee` e `J2EE` são o mesmo ID? | Sem premissa — cenário pendente (PS-TC-P01). |
 | Q-04 | Espaços no início/fim são removidos ou rejeitados? | Rejeitados. **Observado no 005-b e no 005-c (03/11/2026): os espaços do início e do fim foram removidos (trim)**; aguardando definição da regra. |
-| Q-05 | Existe tamanho mínimo/máximo para o User ID? | Não documentado — investigar com teste exploratório (PS-TC-E01). |
+| Q-05 | Existe tamanho mínimo/máximo para o User ID? | Não documentado. **E01: 50 caracteres geraram erro 500 (BUG-006)**; o limite exato não foi determinado. |
 | Q-06 | O ID pode ter só letras ou só números? | Sim, ambos são alfanuméricos. |
 
 ## 🧪 Preparação (vale para todos os casos)
@@ -51,10 +51,10 @@
 | PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ❌ 005-a falhou (BUG-002) · ⏸️ 005-b/c espaços das pontas removidos (Q-04) · ❌ 005-d recusa silenciosa (BUG-004) |
 | PS-TC-006 | Não aceita letras acentuadas | REQ-002 / Q-02 | 🟡 Média | ❌ Falhou sob Q-02 (BUG-002) · BUG-005 |
 | PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ❌ Falhou (BUG-002) · BUG-005 |
-| PS-TC-008 | Aceita User ID só com letras | REQ-002 / Q-06 | 🟡 Média | ⏳ |
-| PS-TC-009 | Aceita User ID só com números | REQ-002 / Q-06 | 🟡 Média | ⏳ |
+| PS-TC-008 | Aceita User ID só com letras | REQ-002 / Q-06 | 🟡 Média | ✅ Passou sob Q-06 |
+| PS-TC-009 | Aceita User ID só com números | REQ-002 / Q-06 | 🟡 Média | ✅ Passou sob Q-06 |
 | PS-TC-P01 | Unicidade com maiúsculas/minúsculas | REQ-001 / Q-03 | 🟡 Média | ⏸️ Pendente |
-| PS-TC-E01 | Exploratório: User ID muito longo | Q-05 | 🟢 Baixa | ⏳ |
+| PS-TC-E01 | Exploratório: User ID muito longo | Q-05 | 🟢 Baixa | 🔍 Executado → BUG-006 |
 
 ---
 
@@ -156,8 +156,11 @@
 | **Requisito** | PS-REQ-002 / Q-06 · 🟡 Média |
 | **Passos** | Os mesmos do PS-TC-003 (passos 1–4), com um ID novo só com letras (ex.: `QAFabTeste`). |
 | **Resultado esperado** | Cadastro bem-sucedido. |
-| **Dado usado / Resultado atual** | |
-| **Status / Evidência** | ⏳ · conforme o protocolo |
+| **Dado usado** | `QaFabTesteAbcd` (só letras; o planejado era `QAFabTeste`, trocado para um ID novo) · dados fictícios · senha de teste (não publicada) |
+| **Resultado atual** | Após salvar: página principal com Sign In, sem mensagem de erro (sem login automático). Login com `QaFabTesteAbcd` autenticado ("Welcome Teste!"). My Account exibe **`QaFabTesteAbcd`**. |
+| **Data da execução** | 03/11/2026 16:51 · A01 |
+| **Execução** | **Executado pelo Claude** a pedido do testador (preenchimento dos campos, cliques em Save e Login e prints com data e hora); **senhas digitadas pelo testador**. |
+| **Status / Evidência** | ✅ **Passou sob a premissa Q-06** · [01](../evidencias/PS-TC-008_20261103_165145_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-008_20261103_165145_T01_02-depois-salvar.jpg) · [03](../evidencias/PS-TC-008_20261103_165145_T01_03-antes-login.jpg) · [04](../evidencias/PS-TC-008_20261103_165145_T01_04-depois-login.jpg) · [05](../evidencias/PS-TC-008_20261103_165145_T01_05-my-account.jpg) |
 
 ## PS-TC-009 — Aceita User ID só com números *(premissa Q-06)*
 | Campo | Descrição |
@@ -165,8 +168,11 @@
 | **Requisito** | PS-REQ-002 / Q-06 · 🟡 Média |
 | **Passos** | Os mesmos do PS-TC-003 (passos 1–4), com um ID novo só com números (ex.: a data e hora `0311261205`). |
 | **Resultado esperado** | Cadastro bem-sucedido. |
-| **Dado usado / Resultado atual** | |
-| **Status / Evidência** | ⏳ · conforme o protocolo |
+| **Dado usado** | `11031655` (só números) · dados fictícios · senha de teste (não publicada) |
+| **Resultado atual** | Após salvar: página principal com Sign In, sem mensagem de erro (sem login automático). Login com `11031655` autenticado ("Welcome Teste!"). My Account exibe **`11031655`**. |
+| **Data da execução** | 03/11/2026 16:54 · A01 |
+| **Execução** | **Executado pelo Claude** a pedido do testador (preenchimento dos campos, cliques em Save e Login e prints com data e hora); **senhas digitadas pelo testador**. |
+| **Status / Evidência** | ✅ **Passou sob a premissa Q-06** · [01](../evidencias/PS-TC-009_20261103_165405_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-009_20261103_165405_T01_02-depois-salvar.jpg) · [03](../evidencias/PS-TC-009_20261103_165405_T01_03-antes-login.jpg) · [04](../evidencias/PS-TC-009_20261103_165405_T01_04-depois-login.jpg) · [05](../evidencias/PS-TC-009_20261103_165405_T01_05-my-account.jpg) |
 
 ---
 
@@ -183,5 +189,8 @@ O requisito PS-REQ-001 não diz se `j2ee` e `J2EE` são o mesmo ID. **Sem essa r
 Os limites de tamanho não estão documentados, por isso **não foram inventados valores**. Objetivo: observar como o sistema reage.
 - **Dado:** um ID alfanumérico de 50 caracteres (ex.: `QAFab` + 45 letras/números).
 - **O que observar:** o sistema aceita, recusa com uma mensagem amigável ou mostra um erro técnico (ex.: erro de servidor, mensagem em inglês técnico)?
-- **Resultado atual:** ____
-- **Se aparecer um erro técnico**, registrar um bug em `bug-reports/`.
+- **Dado usado:** `QaLongo11031700abcdefghijklmnopqrstuvwxyzABCDEFGHI` (50 caracteres, conferidos no código da página; o campo não tem `maxlength`) · 03/11/2026 16:56 · A01
+- **Resultado atual:** **erro 500** ao salvar: `string data, right truncation; table: SIGNON column: USERNAME`, com SQL e stack trace expostos. O login seguinte com o mesmo ID foi recusado ("Invalid username or password"), o que **não prova** ausência de gravação parcial.
+- **Execução:** executado pelo Claude a pedido do testador; senhas digitadas pelo testador.
+- **Status:** 🔍 **Exploratório executado** → [BUG-006](../bug-reports/BUG-006.md) · [01](../evidencias/PS-TC-E01_20261103_165636_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-E01_20261103_165636_T01_02-depois-salvar.jpg) · [03](../evidencias/PS-TC-E01_20261103_165636_T01_03-antes-login.jpg) · [04](../evidencias/PS-TC-E01_20261103_165636_T01_04-depois-login.jpg)
+- **Limite exato:** não determinado (só 50 caracteres foi testado). Os IDs de 14 a 15 caracteres usados nos outros testes foram aceitos.
