@@ -4,6 +4,19 @@ Este arquivo registra como os casos de teste evoluíram depois de revisões, com
 
 ---
 
+## Versão 3.1 — 03/11/2026 · autorrevisão antes da revisão do ChatGPT
+**Revisor:** Claude, a pedido do testador ("o que o ChatGPT vai reclamar?") · **Decisão final:** Fabricio S Azeredo
+
+| Problema encontrado | Correção |
+|---|---|
+| O README dizia que o testador "executou todos os testes", mas no PS-TC-004 e em partes do PS-TC-002 o Claude preencheu campos e clicou | Novo campo **Execução** em cada caso, registrando quem fez cada parte; README ajustado |
+| O achado "senha devolvida no HTML" estava no BUG-004, mas é um problema de senha | Movido para o BUG-003 como achado complementar |
+| O protocolo pedia `.png`, mas as evidências são `.jpg` | O protocolo agora aceita os dois formatos |
+| Os casos pendentes citavam nomes de arquivo antigos (`PS-TC-005a.png`…) | Trocados por "conforme o protocolo" |
+| O link do histórico de commits era relativo e podia quebrar | Trocado por um link absoluto |
+
+---
+
 ## Versão 3 — 03/11/2026 · revisão das evidências e dos bug reports
 **Revisores:** ChatGPT (revisão e protocolo de execução) e Claude (análise e ajustes) · **Decisão final:** Fabricio S Azeredo
 
