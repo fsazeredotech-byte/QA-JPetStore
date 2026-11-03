@@ -3,9 +3,9 @@
 **Aplicação:** [JPetStore — Mate Academy](https://jpetstore.mate.academy/actions/Catalog.action)
 **Funcionalidade:** User Registration — **escopo: somente o campo User ID** (não cobre o cadastro completo)
 **Requisitos:** PS-REQ-001 (User ID único) · PS-REQ-002 (User ID apenas alfanumérico, letras latinas) — fonte: tarefa do curso Mate Academy
-**Versão do documento:** 2 (revisada — ver [`REVISOES.md`](../REVISOES.md))
-**Ambiente:** Google Chrome (versão: ____) · Sistema operacional: ____
-**Data da execução:** ____ · **Executado por:** Fabricio S Azeredo
+**Versão do documento:** 3 (revisada — ver [`REVISOES.md`](../REVISOES.md)) · **Como executar:** [`PROTOCOLO-EXECUCAO.md`](../PROTOCOLO-EXECUCAO.md)
+**Ambiente A01:** navegador integrado do app Claude Desktop 4.4212.0 (Chromium 152.0.7977.167) · Windows 10 64-bit
+**Execuções:** a partir de 03/11/2026 · **Executado por:** Fabricio S Azeredo
 
 ---
 
@@ -32,7 +32,7 @@
 ## 🧪 Preparação (vale para todos os casos)
 1. Abrir a [Pet Store](https://jpetstore.mate.academy/actions/Catalog.action) **sem estar logado** (se estiver, clicar em **Sign Out**).
 2. Caminho até o formulário: **Sign In** → **Register Now!**
-3. **Dados válidos para os outros campos:** Password `Senha123` · Repeat password `Senha123` · First name `Teste` · Last name `QA` · Email `teste.qa@example.com` · Phone `21999999999` · Address 1 `Rua Exemplo, 100` · City `Rio de Janeiro` · State `RJ` · Zip `20000000` · Country `Brasil`.
+3. **Dados válidos para os outros campos** *(planejados; o valor realmente usado é registrado em cada execução)*: senha de teste exclusiva, não publicada (exemplo de formato: `Senha123`) · First name `Teste` · Last name `QA` · Email `teste.qa@example.com` · Phone `21999999999` · Address 1 `Rua Exemplo, 100` · City `Rio de Janeiro` · State `RJ` · Zip `20000000` · Country `Brasil`.
 4. Para IDs que precisam ser novos, usar o padrão `QAFab` + data e hora (ex.: `QAFab0311261205`) e **anotar o valor usado**.
 
 ⚠️ Usar apenas dados fictícios — este repositório é público.
@@ -66,9 +66,9 @@
 | **Passos** | 1. Abrir o formulário de cadastro.<br>2. Inserir o User ID da conta criada no PS-TC-003.<br>3. Preencher os outros campos com dados válidos.<br>4. Clicar em **Save Account Information**.<br>5. Fazer login com a conta original do PS-TC-003. |
 | **Resultado esperado** | Passo 4: o sistema exibe um erro informando que o User ID já existe, e nenhuma conta nova é criada.<br>Passo 5: a conta original continua acessível, com os dados intactos. |
 | **Dado usado** | User ID `QAFab0311261210` (o mesmo do PS-TC-003) |
-| **Resultado atual** | Passo 4: em vez de uma mensagem de erro, apareceu **"HTTP Status 500 – Internal Server Error"** com stack trace e SQL (`DuplicateKeyException`, `PK_ACCOUNT`). A conta duplicada não foi criada.<br>Passo 5: o login com a conta original funcionou ("Welcome teste1!"). Na página My Account, o User ID, o nome e o e-mail continuam os do cadastro original: ✅ a conta ficou intacta. |
+| **Resultado atual** | Passo 4: em vez de uma mensagem de erro, apareceu **"HTTP Status 500 – Internal Server Error"** com stack trace e SQL (`DuplicateKeyException`, `PK_ACCOUNT`). A conta duplicada não foi criada.<br>Passo 5: o login com a conta original funcionou ("Welcome teste1!"). Na página My Account, User ID, nome e e-mail foram conferidos, sem alteração observada (sem print publicado, porque a página contém dados não fictícios). |
 | **Data da execução** | 03/11/2026 |
-| **Status / Evidência** | ❌ **Falhou** → [BUG-001](../bug-reports/BUG-001.md) · [`BUG-001-erro-500.jpg`](../evidencias/BUG-001-erro-500.jpg) · [`PS-TC-001-passo5-login.jpg`](../evidencias/PS-TC-001-passo5-login.jpg) |
+| **Status / Evidência** | ❌ **Falhou** → [BUG-001](../bug-reports/BUG-001.md) · [`BUG-001-erro-500.jpg`](../evidencias/BUG-001-erro-500.jpg) |
 
 ## PS-TC-002 — Não aceita caracteres especiais
 | Campo | Descrição |
@@ -87,12 +87,14 @@
 | Campo | Descrição |
 |---|---|
 | **Requisito** | PS-REQ-002 · 🔴 Crítica (teste de fumaça) |
-| **Passos** | 1. Abrir o formulário de cadastro.<br>2. Inserir um User ID novo com letras e números (padrão `QAFab` + data e hora).<br>3. Preencher os demais campos com dados válidos.<br>4. Clicar em **Save Account Information**.<br>5. Clicar em **Sign Out**.<br>6. Fazer login com o User ID e a senha `Senha123`. |
+| **Passos** | 1. Abrir o formulário de cadastro.<br>2. Inserir um User ID novo com letras e números (padrão `QAFab` + data e hora).<br>3. Preencher os demais campos com dados válidos.<br>4. Clicar em **Save Account Information**.<br>5. Clicar em **Sign Out**.<br>6. Fazer login com o User ID e a senha de teste usada no cadastro. |
 | **Resultado esperado** | Passo 4: cadastro bem-sucedido e redirecionamento para a página principal (resultado definido na tarefa do curso).<br>Passo 6: o login funciona e o nome da conta aparece na página. |
-| **Dado usado** | User ID `QAFab0311261210` · First/Last name `teste1` · senha de teste (não publicada) |
+| **Dado planejado** | `QAFab` + data e hora · dados fictícios do documento |
+| **Dado usado** | User ID `QAFab0311261210` · First/Last name `teste1` · senha de teste (não publicada) · ⚠️ os demais campos **não** usaram os dados fictícios planejados |
 | **Resultado atual** | Passo 4: cadastro concluído e redirecionamento para a página principal com a mensagem "Welcome teste1!". A página **My Account** mostra o User ID e os dados salvos.<br>Passo 6: login com o novo User ID funcionou ("Welcome teste1!"). |
 | **Data da execução** | 03/11/2026 |
-| **Status / Evidência** | ✅ **Passou** · [`PS-TC-003-passo4.jpg`](../evidencias/PS-TC-003-passo4.jpg) · [`PS-TC-003-passo6-login.jpg`](../evidencias/PS-TC-003-passo6-login.jpg) |
+| **Status / Evidência** | ✅ **Passou** · [`PS-TC-003_welcome-teste1.jpg`](../evidencias/PS-TC-003_welcome-teste1.jpg) |
+| **Limitação da evidência** | A tela "Welcome teste1!" é idêntica após o cadastro (passo 4) e após o login (passo 6), por isso **um único print** é publicado e ele **não distingue** as duas etapas. A confirmação do passo 6 e do User ID na My Account foi feita pelo testador, sem print publicado. Próximas execuções seguem o protocolo, com prints distintos por etapa. |
 
 ## PS-TC-004 — Não aceita User ID vazio *(premissa Q-01)*
 | Campo | Descrição |

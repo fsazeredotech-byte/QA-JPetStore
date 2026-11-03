@@ -4,6 +4,34 @@ Este arquivo registra como os casos de teste evoluíram depois de revisões, com
 
 ---
 
+## Versão 3 — 03/11/2026 · revisão das evidências e dos bug reports
+**Revisores:** ChatGPT (revisão e protocolo de execução) e Claude (análise e ajustes) · **Decisão final:** Fabricio S Azeredo
+
+**Lição principal:** *a documentação não pode afirmar mais do que as evidências mostram.*
+
+### 🔴 Erros corrigidos
+| Onde | Problema encontrado | Correção |
+|---|---|---|
+| Evidências | `PS-TC-003-passo4`, `PS-TC-003-passo6-login` e `PS-TC-001-passo5-login` eram **o mesmo arquivo** (a tela "Welcome teste1!" é idêntica nos três momentos). As imagens não provavam etapas diferentes. | Foi mantido um único print (`PS-TC-003_welcome-teste1.jpg`) e a limitação foi registrada nos casos |
+| BUG-002 | "Afeta todo novo cadastro" generalizava além do observado. | Trocado por "observado em 2/2 variações (`!` e `@`)" |
+| BUG-002 | "A validação acontece no servidor" não foi demonstrado. | Removido |
+| BUG-002 | A falta de login automático era atribuída ao símbolo. | Movida para uma observação separada, **sem atribuir a causa** |
+| BUG-001 | Afirmava que o usuário "perde os dados digitados" sem evidência, e misturava requisito com usabilidade. | O texto agora descreve só o observado e separa o REQ-001 (unicidade) da expectativa de usabilidade |
+| BUG-003 | Imagem com borrão (pode ser revertido). | Trocado por tarja preta opaca, e o HTML dos campos foi incluído como evidência |
+
+### 🟡 Melhorias
+- **Status** (Aberto), **ambiente A01** (navegador e versão, sistema) e **frequência** em todos os bugs.
+- **PROTOCOLO-EXECUCAO.md:** como executar e documentar cada teste (prints por etapa, nomes, dado planejado × usado, status).
+- **README:** resumo da execução, status parcial do PS-TC-002 e checklist atualizado.
+- **Casos de teste:** separação entre o dado planejado e o usado; a senha não é mais publicada como dado.
+
+### 💡 O que aprendi
+- **Uma imagem só prova o que ela mostra.** Três prints da mesma tela não provam três etapas.
+- **Frequência e escopo:** escrever "observado em 2/2", e não "sempre" ou "todos".
+- **Separar fato, hipótese e expectativa:** o que vi, o que suspeito e o que acho que deveria acontecer são coisas diferentes.
+
+---
+
 ## Versão 2 — 03/11/2026 · revisão por pares
 **Revisores:** ChatGPT (revisão inicial) e Claude (análise da revisão) · **Decisão final:** Fabricio S Azeredo
 

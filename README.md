@@ -25,19 +25,28 @@ Este projeto documenta testes manuais da funcionalidade **User Registration** (c
 QA-JPetStore/
 ├── README.md                          ← esta página
 ├── REVISOES.md                        ← histórico de revisões
+├── PROTOCOLO-EXECUCAO.md              ← como os testes são executados e documentados
 ├── casos-de-teste/
 │   └── casos-de-teste-cadastro.md     ← casos de teste manuais
-├── evidencias/                        ← prints da execução (um por caso)
-└── bug-reports/                       ← relatórios de bugs encontrados
+├── evidencias/                        ← prints da execução
+└── bug-reports/                       ← relatórios de bugs (BUG-001 a BUG-003)
     └── modelo-bug-report.md           ← modelo usado nos relatórios
 ```
 
-## ✅ Resumo dos casos de teste (versão 2)
+## 📊 Resumo da execução
+
+**Ambiente A01:** navegador integrado do app Claude Desktop 4.4212.0 (Chromium 152.0.7977.167) · Windows 10 64-bit · **Data:** 03/11/2026
+
+| ✅ Passou | ❌ Falhou | ⏳ A executar | ⏸️ Pendente | 🐞 Bugs abertos |
+|---|---|---|---|---|
+| 1 caso (003) | 2 casos (001; 002 com 2 de 3 variações) | 7 casos + variação 002-c | 1 (P01) | 3 |
+
+## ✅ Resumo dos casos de teste (versão 3)
 
 | ID | Resumo | Requisito | Prioridade | Status |
 |---|---|---|---|---|
 | PS-TC-001 | Não aceita User ID já existente | REQ-001 | 🟠 Alta | ❌ Falhou → [BUG-001](bug-reports/BUG-001.md) |
-| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou → [BUG-002](bug-reports/BUG-002.md) |
+| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou em `!` e `@` → [BUG-002](bug-reports/BUG-002.md) · ⏳ `#` a executar |
 | PS-TC-003 | Aceita letras e números (cadastro e login) | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Premissa | 🟠 Alta | ⏳ A executar |
 | PS-TC-005 | Não aceita espaços | REQ-002 | 🟡 Média | ⏳ A executar |
@@ -52,24 +61,25 @@ QA-JPetStore/
 
 Detalhes completos em [`casos-de-teste/casos-de-teste-cadastro.md`](casos-de-teste/casos-de-teste-cadastro.md).
 
-## 🐞 Bugs encontrados
+## 🐞 Bugs encontrados (todos 🔴 Abertos)
 
 | ID | Título | Severidade | Prioridade | Caso |
 |---|---|---|---|---|
 | [BUG-001](bug-reports/BUG-001.md) | Cadastro com User ID existente mostra erro 500 com stack trace e SQL expostos | 🟠 Major | 🟠 Alta | PS-TC-001 |
-| [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID com caractere especial (`User!123`) | 🟠 Major | 🟠 Alta | PS-TC-002 |
+| [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID com caractere especial (`!` e `@`) | 🟠 Major | 🟠 Alta | PS-TC-002 |
 | [BUG-003](bug-reports/BUG-003.md) | Campos de senha do cadastro mostram a senha em texto visível | 🟡 Minor | 🟠 Alta | Exploratório |
 
 ## 🧰 Ferramentas
 
-- Testes manuais em navegador (Google Chrome)
+- Testes manuais no navegador (ambiente A01)
 - Google Sheets (planilha de casos de teste do curso)
 - GitHub (documentação e versionamento)
 
 ## 🚀 Próximos passos
 
-- [ ] Executar os casos de teste e registrar evidências
-- [ ] Registrar bugs reais encontrados
+- [x] Registrar bugs reais encontrados (3 até agora)
+- [x] Criar protocolo de execução
+- [ ] Concluir a execução dos casos restantes seguindo o protocolo
 - [ ] Automatizar os casos com Playwright
 - [ ] Testar login e carrinho de compras
 
