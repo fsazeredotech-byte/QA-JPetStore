@@ -66,9 +66,9 @@
 | **Passos** | 1. Abrir o formulário de cadastro.<br>2. Inserir o User ID da conta criada no PS-TC-003.<br>3. Preencher os outros campos com dados válidos.<br>4. Clicar em **Save Account Information**.<br>5. Fazer login com a conta original do PS-TC-003. |
 | **Resultado esperado** | Passo 4: o sistema exibe um erro informando que o User ID já existe, e nenhuma conta nova é criada.<br>Passo 5: a conta original continua acessível, com os dados intactos. |
 | **Dado usado** | User ID `QAFab0311261210` (o mesmo do PS-TC-003) |
-| **Resultado atual** | Passo 4: em vez de uma mensagem de erro, apareceu **"HTTP Status 500 – Internal Server Error"** com stack trace e SQL (`DuplicateKeyException`, `PK_ACCOUNT`). A conta duplicada não foi criada.<br>Passo 5: ⏳ a verificar. |
+| **Resultado atual** | Passo 4: em vez de uma mensagem de erro, apareceu **"HTTP Status 500 – Internal Server Error"** com stack trace e SQL (`DuplicateKeyException`, `PK_ACCOUNT`). A conta duplicada não foi criada.<br>Passo 5: o login com a conta original funcionou ("Welcome teste1!"). Na página My Account, o User ID, o nome e o e-mail continuam os do cadastro original: ✅ a conta ficou intacta. |
 | **Data da execução** | 03/11/2026 |
-| **Status / Evidência** | ❌ **Falhou** → [BUG-001](../bug-reports/BUG-001.md) · [`BUG-001-erro-500.jpg`](../evidencias/BUG-001-erro-500.jpg) |
+| **Status / Evidência** | ❌ **Falhou** → [BUG-001](../bug-reports/BUG-001.md) · [`BUG-001-erro-500.jpg`](../evidencias/BUG-001-erro-500.jpg) · [`PS-TC-001-passo5-login.jpg`](../evidencias/PS-TC-001-passo5-login.jpg) |
 
 ## PS-TC-002 — Não aceita caracteres especiais
 | Campo | Descrição |
