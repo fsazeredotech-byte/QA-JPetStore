@@ -39,7 +39,7 @@ QA-JPetStore/
 
 | ✅ Passou | ❌ Falhou | ⏳ A executar | ⏸️ Pendente | 🐞 Bugs abertos |
 |---|---|---|---|---|
-| 1 caso (003) | 3 casos (001; 002 nas 3 variações; 004 sob premissa) | 6 casos | 1 (P01) | 4 |
+| 1 caso (003) | 4 casos (001; 002 nas 3 variações; 004 sob premissa; 005 em 1 de 4 variações) | 5 casos + 005-b/c/d | 1 (P01) | 4 |
 
 ## ✅ Resumo dos casos de teste (versão 3.2)
 
@@ -49,7 +49,7 @@ QA-JPetStore/
 | PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou em `!`, `@` e `#` → [BUG-002](bug-reports/BUG-002.md) |
 | PS-TC-003 | Aceita letras e números (cadastro e login) | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Premissa Q-01 | 🟠 Alta | ❌ Falhou sob a premissa → [BUG-004](bug-reports/BUG-004.md) |
-| PS-TC-005 | Não aceita espaços | REQ-002 | 🟡 Média | ⏳ A executar |
+| PS-TC-005 | Não aceita espaços | REQ-002 | 🟡 Média | ❌ 005-a falhou → [BUG-002](bug-reports/BUG-002.md) · ⏳ b/c/d a executar |
 | PS-TC-006 | Não aceita letras acentuadas | REQ-002 | 🟡 Média | ⏳ A executar |
 | PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ⏳ A executar |
 | PS-TC-008 | Aceita User ID só com letras | REQ-002 | 🟡 Média | ⏳ A executar |
@@ -66,7 +66,7 @@ Detalhes completos em [`casos-de-teste/casos-de-teste-cadastro.md`](casos-de-tes
 | ID | Título | Severidade | Prioridade | Caso |
 |---|---|---|---|---|
 | [BUG-001](bug-reports/BUG-001.md) | Cadastro com User ID existente mostra erro 500 com stack trace e SQL expostos | 🟠 Major | 🟠 Alta | PS-TC-001 |
-| [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID com caractere especial (`!`, `@` e `#`) | 🟠 Major | 🟠 Alta | PS-TC-002 |
+| [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID com caracteres não alfanuméricos (`!`, `@`, `#` e espaço) | 🟠 Major | 🟠 Alta | PS-TC-002 |
 | [BUG-003](bug-reports/BUG-003.md) | Campos de senha do cadastro mostram a senha em texto visível | 🟡 Minor | 🟠 Alta | Exploratório |
 | [BUG-004](bug-reports/BUG-004.md) | User ID vazio é recusado sem nenhuma mensagem de erro | 🟡 Minor | 🟡 Média | PS-TC-004 |
 

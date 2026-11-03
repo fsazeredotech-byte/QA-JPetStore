@@ -48,7 +48,7 @@
 | PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou nas 3 variações (BUG-002) |
 | PS-TC-003 | Aceita letras e números — cadastro e login | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Q-01 | 🟠 Alta | ❌ Falhou sob Q-01 (BUG-004) |
-| PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ⏳ |
+| PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ❌ 005-a falhou (BUG-002) · 005-b/c/d ⏳ |
 | PS-TC-006 | Não aceita letras acentuadas | REQ-002 / Q-02 | 🟡 Média | ⏳ |
 | PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ⏳ |
 | PS-TC-008 | Aceita User ID só com letras | REQ-002 / Q-06 | 🟡 Média | ⏳ |
@@ -121,7 +121,7 @@
 
 | Variação | Dado | Resultado atual | Status | Evidência |
 |---|---|---|---|---|
-| 005-a | `Test User` (espaço no meio) | | ⏳ | conforme o protocolo |
+| 005-a | Planejado `Test User` · **usado `Qa 11031515`** (1 espaço no meio) · 03/11/2026 15:15, A01 | Após salvar: página principal com Sign In, sem mensagem de erro. Login com `Qa 11031515` autenticado ("Welcome Teste!"). My Account mostra **User ID `Qa 11031515`**, com o espaço. Print 03 não capturado (o login foi feito antes da captura). **Execução:** campos fictícios digitados pelo Claude; User ID, senha, Save e login pelo testador; prints pelo Claude, com data e hora. | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [01](../evidencias/PS-TC-005a_20261103_151559_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-005a_20261103_151559_T01_02-depois-salvar.jpg) · [04](../evidencias/PS-TC-005a_20261103_151559_T01_04-depois-login.jpg) · [05](../evidencias/PS-TC-005a_20261103_151559_T01_05-my-account.jpg) |
 | 005-b | ` Teste123` (espaço no início) | | ⏳ | conforme o protocolo |
 | 005-c | `Teste123 ` (espaço no fim) | | ⏳ | conforme o protocolo |
 | 005-d | `   ` (só espaços) | | ⏳ | conforme o protocolo |
