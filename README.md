@@ -39,7 +39,7 @@ QA-JPetStore/
 
 | ✅ Passou | ❌ Falhou | ⏳ A executar | ⏸️ Pendente | 🐞 Bugs abertos |
 |---|---|---|---|---|
-| 1 caso (003) | 5 casos (001; 002; 004 e 006 sob premissa; 005 nas variações a e d) | 4 casos (007, 008, 009, E01) | 1 (P01) + 005-b/c (Q-04) | 5 |
+| 1 caso (003) | 6 casos (001; 002; 004 e 006 sob premissa; 005 nas variações a e d; 007) | 3 casos (008, 009, E01) | 1 (P01) + 005-b/c (Q-04) | 5 |
 
 ## ✅ Resumo dos casos de teste (versão 3.2)
 
@@ -51,7 +51,7 @@ QA-JPetStore/
 | PS-TC-004 | Não aceita User ID vazio | Premissa Q-01 | 🟠 Alta | ❌ Falhou sob a premissa → [BUG-004](bug-reports/BUG-004.md) |
 | PS-TC-005 | Não aceita espaços | REQ-002 | 🟡 Média | ❌ 005-a falhou → [BUG-002](bug-reports/BUG-002.md) · ⏸️ 005-b/c: espaços das pontas removidos (dúvida Q-04) · ❌ 005-d → [BUG-004](bug-reports/BUG-004.md) |
 | PS-TC-006 | Não aceita letras acentuadas | Premissa Q-02 | 🟡 Média | ❌ Falhou sob a premissa → [BUG-002](bug-reports/BUG-002.md) · [BUG-005](bug-reports/BUG-005.md) |
-| PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ⏳ A executar |
+| PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ❌ Falhou → [BUG-002](bug-reports/BUG-002.md) · [BUG-005](bug-reports/BUG-005.md) |
 | PS-TC-008 | Aceita User ID só com letras | REQ-002 | 🟡 Média | ⏳ A executar |
 | PS-TC-009 | Aceita User ID só com números | REQ-002 | 🟡 Média | ⏳ A executar |
 | PS-TC-P01 | Unicidade com maiúsculas/minúsculas | REQ-001 | 🟡 Média | ⏸️ Pendente de esclarecimento |
@@ -66,10 +66,10 @@ Detalhes completos em [`casos-de-teste/casos-de-teste-cadastro.md`](casos-de-tes
 | ID | Título | Severidade | Prioridade | Caso |
 |---|---|---|---|---|
 | [BUG-001](bug-reports/BUG-001.md) | Cadastro com User ID existente mostra erro 500 com stack trace e SQL expostos | 🟠 Major | 🟠 Alta | PS-TC-001 |
-| [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID com caracteres não alfanuméricos (`!`, `@`, `#` e espaço) | 🟠 Major | 🟠 Alta | PS-TC-002 |
+| [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID fora da regra (`!`, `@`, `#`, espaço, acento e chinês) | 🟠 Major | 🟠 Alta | PS-TC-002 |
 | [BUG-003](bug-reports/BUG-003.md) | Campos de senha do cadastro mostram a senha em texto visível | 🟡 Minor | 🟠 Alta | Exploratório |
 | [BUG-004](bug-reports/BUG-004.md) | User ID vazio ou só com espaços é recusado sem nenhuma mensagem de erro | 🟡 Minor | 🟡 Média | PS-TC-004, 005-d |
-| [BUG-005](bug-reports/BUG-005.md) | User ID com acento é exibido corrompido ("UsuÃ¡rio") na My Account | 🟡 Minor | 🟡 Média | PS-TC-006 |
+| [BUG-005](bug-reports/BUG-005.md) | User ID com acento ou chinês é exibido corrompido na My Account | 🟡 Minor | 🟡 Média | PS-TC-006, 007 |
 
 ## 🤝 Como este projeto foi feito
 
