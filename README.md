@@ -69,11 +69,24 @@ Detalhes completos em [`casos-de-teste/casos-de-teste-cadastro.md`](casos-de-tes
 | [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID com caractere especial (`!`, `@` e `#`) | 🟠 Major | 🟠 Alta | PS-TC-002 |
 | [BUG-003](bug-reports/BUG-003.md) | Campos de senha do cadastro mostram a senha em texto visível | 🟡 Minor | 🟠 Alta | Exploratório |
 
+## 🤝 Como este projeto foi feito
+
+Este portfólio foi desenvolvido com **apoio de IA**, de forma transparente. Os commits marcados com *"fsazeredotech-byte and claude"* foram enviados com a ajuda do Claude.
+
+| Quem | Papel |
+|---|---|
+| 👤 **Fabricio S Azeredo** | Executou todos os testes na aplicação, encontrou e confirmou os bugs, decidiu severidade e prioridade, aprovou cada alteração e conduziu a revisão entre as IAs |
+| 🟣 **Claude (Anthropic)** | Apoio na redação e organização da documentação, captura e proteção das evidências, envio para o GitHub |
+| 🟢 **ChatGPT (OpenAI)** | Revisão crítica independente dos casos e dos bugs, e protocolo de execução |
+
+As revisões entre as duas IAs, e o que mudou por causa delas, estão registradas em [`REVISOES.md`](REVISOES.md).
+
 ## 🧰 Ferramentas
 
 - Testes manuais no navegador (ambiente A01)
 - Google Sheets (planilha de casos de teste do curso)
 - GitHub (documentação e versionamento)
+- Claude e ChatGPT (apoio na documentação e revisão por pares)
 
 ## 🚀 Próximos passos
 
