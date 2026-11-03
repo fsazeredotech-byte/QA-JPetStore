@@ -4,6 +4,25 @@ Este arquivo registra como os casos de teste evoluíram depois de revisões, com
 
 ---
 
+## Versão 3.3 — 03/11/2026 · revisão final do ChatGPT (versão para recrutadores)
+**Revisores:** ChatGPT (revisão final) e Claude (correção) · **Decisão final:** Fabricio S Azeredo
+
+**Parecer do revisor:** *"o repositório já está apresentável como portfólio de QA júnior, após alguns ajustes pontuais."* As evidências de 005-a, 006, 007, 008, 009, E01, BUG-005 e BUG-006 foram conferidas e sustentam o que está escrito.
+
+| Onde | Problema | Correção |
+|---|---|---|
+| BUG-003 | "Preenchido pelo site": a origem não foi comprovada (pode ser o navegador) | "Encontrado preenchido; origem não determinada" |
+| BUG-005 | "Afeta qualquer dado com acento" generalizava; a causa (UTF-8) era apresentada como fato | Limitado aos 2 User IDs testados; a causa virou **hipótese** |
+| 005-b/c | "Não viola o PS-REQ-002": a tela não prova como o ID foi gravado | "Nenhuma violação confirmada; armazenamento não determinado" |
+| README | "Execução concluída", mas o P01 não foi executado; a Q-01 faltava na lista de dúvidas | "Rodada concluída para os cenários executáveis; P01 pendente"; Q-01 incluída |
+| BUG-006 | Faltava o ID exato; "correção simples" era uma estimativa sem base | ID incluído; estimativa removida |
+
+### 💡 O que aprendi
+- **Ver um dado na tela não diz de onde ele veio.** O navegador também preenche campos.
+- **"Compatível com" é diferente de "causado por".** Hipóteses devem ser escritas como hipóteses.
+
+---
+
 ## Versão 3.2 — 03/11/2026 · 3ª revisão do ChatGPT
 **Revisores:** ChatGPT (revisão) e Claude (análise e correção) · **Decisão final:** Fabricio S Azeredo
 

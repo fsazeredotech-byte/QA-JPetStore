@@ -39,9 +39,9 @@ QA-JPetStore/
 
 | ✅ Passou | ❌ Falhou | ⏳ A executar | ⏸️ Pendente | 🐞 Bugs abertos |
 |---|---|---|---|---|
-| 3 casos (003; 008 e 009 sob premissa) | 6 casos (001; 002; 004 e 006 sob premissa; 005 nas variações a e d; 007) | 0 — **execução concluída** (+ E01 exploratório executado) | 1 (P01) + 005-b/c (Q-04) | 6 |
+| 3 casos (003; 008 e 009 sob premissa) | 6 casos (001; 002; 004 e 006 sob premissa; 005 nas variações a e d; 007) | 0 — **rodada concluída para os cenários executáveis** (+ E01 exploratório executado; P01 aguarda a regra) | 1 (P01) + 005-b/c (Q-04) | 6 |
 
-## ✅ Resumo dos casos de teste (versão 3.2)
+## ✅ Resumo dos casos de teste (versão 3.3)
 
 | ID | Resumo | Requisito | Prioridade | Status |
 |---|---|---|---|---|
@@ -96,7 +96,7 @@ As revisões entre as duas IAs, e o que mudou por causa delas, estão registrada
 - [x] Registrar bugs reais encontrados (6)
 - [x] Criar protocolo de execução
 - [x] Concluir a execução dos casos seguindo o protocolo (03/11/2026)
-- [ ] Esclarecer as dúvidas Q-02 a Q-06 e P01 e reexecutar o PS-TC-003 com dados fictícios
+- [ ] Esclarecer as dúvidas Q-01 a Q-06, executar o P01 depois da regra definida e reexecutar o PS-TC-003 com dados fictícios
 - [ ] Automatizar os casos com Playwright
 - [ ] Testar login e carrinho de compras
 
