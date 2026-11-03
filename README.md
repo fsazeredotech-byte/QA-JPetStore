@@ -39,14 +39,14 @@ QA-JPetStore/
 
 | ✅ Passou | ❌ Falhou | ⏳ A executar | ⏸️ Pendente | 🐞 Bugs abertos |
 |---|---|---|---|---|
-| 1 caso (003) | 2 casos (001; 002 com 2 de 3 variações) | 7 casos + variação 002-c | 1 (P01) | 3 |
+| 1 caso (003) | 2 casos (001; 002 nas 3 variações) | 7 casos | 1 (P01) | 3 |
 
 ## ✅ Resumo dos casos de teste (versão 3)
 
 | ID | Resumo | Requisito | Prioridade | Status |
 |---|---|---|---|---|
 | PS-TC-001 | Não aceita User ID já existente | REQ-001 | 🟠 Alta | ❌ Falhou → [BUG-001](bug-reports/BUG-001.md) |
-| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou em `!` e `@` → [BUG-002](bug-reports/BUG-002.md) · ⏳ `#` a executar |
+| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou em `!`, `@` e `#` → [BUG-002](bug-reports/BUG-002.md) |
 | PS-TC-003 | Aceita letras e números (cadastro e login) | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Premissa | 🟠 Alta | ⏳ A executar |
 | PS-TC-005 | Não aceita espaços | REQ-002 | 🟡 Média | ⏳ A executar |
@@ -66,7 +66,7 @@ Detalhes completos em [`casos-de-teste/casos-de-teste-cadastro.md`](casos-de-tes
 | ID | Título | Severidade | Prioridade | Caso |
 |---|---|---|---|---|
 | [BUG-001](bug-reports/BUG-001.md) | Cadastro com User ID existente mostra erro 500 com stack trace e SQL expostos | 🟠 Major | 🟠 Alta | PS-TC-001 |
-| [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID com caractere especial (`!` e `@`) | 🟠 Major | 🟠 Alta | PS-TC-002 |
+| [BUG-002](bug-reports/BUG-002.md) | Cadastro aceita User ID com caractere especial (`!`, `@` e `#`) | 🟠 Major | 🟠 Alta | PS-TC-002 |
 | [BUG-003](bug-reports/BUG-003.md) | Campos de senha do cadastro mostram a senha em texto visível | 🟡 Minor | 🟠 Alta | Exploratório |
 
 ## 🧰 Ferramentas

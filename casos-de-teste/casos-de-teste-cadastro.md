@@ -45,7 +45,7 @@
 | ID | Resumo | Req. | Prioridade | Status |
 |---|---|---|---|---|
 | PS-TC-001 | Não aceita User ID já existente | REQ-001 | 🟠 Alta | ❌ Falhou (BUG-001) |
-| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ 002-a e 002-b falharam (BUG-002) · 002-c ⏳ |
+| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou nas 3 variações (BUG-002) |
 | PS-TC-003 | Aceita letras e números — cadastro e login | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Q-01 | 🟠 Alta | ⏳ |
 | PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ⏳ |
@@ -81,7 +81,8 @@
 |---|---|---|---|---|
 | 002-a | `User!123` | Nenhum erro: a conta foi criada e o login funcionou; My Account mostra `User!123` (03/11/2026) | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [`BUG-002-conta-criada.jpg`](../evidencias/BUG-002-conta-criada.jpg) |
 | 002-b | `User@123` | Nenhum erro; a conta foi criada (o login manual funcionou e a repetição gerou o erro 500 de duplicidade). Não houve login automático. | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [`PS-TC-002b-apos-salvar.jpg`](../evidencias/PS-TC-002b-apos-salvar.jpg) |
-| 002-c | `User#123` | | ⏳ | `PS-TC-002c.png` |
+| 002-c | Planejado `User#123` · **T01** usado `Qa#1103125501` | ⚠️ **Inconclusiva**: erro 500 de duplicidade ao salvar (possível envio duplicado). Nada concluído; repetida como T02. | — | [01](../evidencias/PS-TC-002c_20261103_125501_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-002c_20261103_125501_T01_02-depois-salvar.jpg) |
+| 002-c | **T02** usado `Qa#1103125930` (03/11/2026 12:59, A01) | Após salvar: página principal com Sign In, sem mensagem de erro. 1º login feito sem o print 03; refeitos o logout e o login para capturar as etapas 03 e 04. Login autenticado ("Welcome TESTE!"). My Account mostra **User ID `Qa#1103125930`**. Criação com `#` confirmada pela interface. | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [01](../evidencias/PS-TC-002c_20261103_125930_T02_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-002c_20261103_125930_T02_02-depois-salvar.jpg) · [03](../evidencias/PS-TC-002c_20261103_125930_T02_03-antes-login.jpg) · [04](../evidencias/PS-TC-002c_20261103_125930_T02_04-depois-login.jpg) · [05](../evidencias/PS-TC-002c_20261103_125930_T02_05-my-account.jpg) |
 
 ## PS-TC-003 — Aceita letras e números (cadastro e login)
 | Campo | Descrição |
