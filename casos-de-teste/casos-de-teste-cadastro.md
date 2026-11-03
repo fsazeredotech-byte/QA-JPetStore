@@ -25,7 +25,7 @@
 | Q-01 | O User ID é obrigatório? (o requisito não diz) | Sim, é obrigatório (PS-TC-004). |
 | Q-02 | "Letras latinas" inclui letras acentuadas (á, ç)? | Não: só `A–Z`, `a–z` e `0–9`. |
 | Q-03 | `j2ee` e `J2EE` são o mesmo ID? | Sem premissa — cenário pendente (PS-TC-P01). |
-| Q-04 | Espaços no início/fim são removidos ou rejeitados? | Rejeitados. |
+| Q-04 | Espaços no início/fim são removidos ou rejeitados? | Rejeitados. **Observado no 005-b (03/11/2026): o espaço inicial foi removido (trim)**; aguardando definição da regra. |
 | Q-05 | Existe tamanho mínimo/máximo para o User ID? | Não documentado — investigar com teste exploratório (PS-TC-E01). |
 | Q-06 | O ID pode ter só letras ou só números? | Sim, ambos são alfanuméricos. |
 
@@ -48,7 +48,7 @@
 | PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ Falhou nas 3 variações (BUG-002) |
 | PS-TC-003 | Aceita letras e números — cadastro e login | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Q-01 | 🟠 Alta | ❌ Falhou sob Q-01 (BUG-004) |
-| PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ❌ 005-a falhou (BUG-002) · 005-b/c/d ⏳ |
+| PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ❌ 005-a falhou (BUG-002) · ⏸️ 005-b espaço removido (Q-04) · 005-c/d ⏳ |
 | PS-TC-006 | Não aceita letras acentuadas | REQ-002 / Q-02 | 🟡 Média | ⏳ |
 | PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ⏳ |
 | PS-TC-008 | Aceita User ID só com letras | REQ-002 / Q-06 | 🟡 Média | ⏳ |
@@ -122,7 +122,7 @@
 | Variação | Dado | Resultado atual | Status | Evidência |
 |---|---|---|---|---|
 | 005-a | Planejado `Test User` · **usado `Qa 11031515`** (1 espaço no meio) · 03/11/2026 15:15, A01 | Após salvar: página principal com Sign In, sem mensagem de erro. Login com `Qa 11031515` autenticado ("Welcome Teste!"). My Account mostra **User ID `Qa 11031515`**, com o espaço. Print 03 não capturado (o login foi feito antes da captura). **Execução:** campos fictícios digitados pelo Claude; User ID, senha, Save e login pelo testador; prints pelo Claude, com data e hora. | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [01](../evidencias/PS-TC-005a_20261103_151559_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-005a_20261103_151559_T01_02-depois-salvar.jpg) · [04](../evidencias/PS-TC-005a_20261103_151559_T01_04-depois-login.jpg) · [05](../evidencias/PS-TC-005a_20261103_151559_T01_05-my-account.jpg) |
-| 005-b | ` Teste123` (espaço no início) | | ⏳ | conforme o protocolo |
+| 005-b | Planejado ` Teste123` · **usado `␣Qa11031520`** (1 espaço inicial, 11 caracteres, conferido no código da página) · 03/11/2026 15:23, A01 | Após salvar: página principal com Sign In, sem mensagem. Login com `␣Qa11031520` (11 caracteres) autenticado. My Account exibe **`Qa11031520` sem o espaço** (10 caracteres): o espaço inicial foi **removido** em algum ponto (ao salvar, ao logar ou na exibição — não determinado). O ID exibido é alfanumérico, então **não viola o PS-REQ-002**; a premissa Q-04 ("rejeitar") não se confirmou. **Execução:** campos fictícios pelo Claude; User ID, senha, Save e login pelo testador; prints com data e hora pelo Claude. | ⏸️ **Pendente de esclarecimento (Q-04)**: observado *trim* em vez de rejeição; não é bug sem a regra definida | [01](../evidencias/PS-TC-005b_20261103_152342_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-005b_20261103_152342_T01_02-depois-salvar.jpg) · [03](../evidencias/PS-TC-005b_20261103_152342_T01_03-antes-login.jpg) · [04](../evidencias/PS-TC-005b_20261103_152342_T01_04-depois-login.jpg) · [05](../evidencias/PS-TC-005b_20261103_152342_T01_05-my-account.jpg) |
 | 005-c | `Teste123 ` (espaço no fim) | | ⏳ | conforme o protocolo |
 | 005-d | `   ` (só espaços) | | ⏳ | conforme o protocolo |
 
