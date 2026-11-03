@@ -46,7 +46,7 @@
 |---|---|---|---|---|
 | PS-TC-001 | Não aceita User ID já existente | REQ-001 | 🟠 Alta | ⏳ |
 | PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ⏳ |
-| PS-TC-003 | Aceita letras e números — cadastro e login | REQ-002 | 🔴 Crítica | ⏳ |
+| PS-TC-003 | Aceita letras e números — cadastro e login | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Q-01 | 🟠 Alta | ⏳ |
 | PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ⏳ |
 | PS-TC-006 | Não aceita letras acentuadas | REQ-002 / Q-02 | 🟡 Média | ⏳ |
@@ -87,8 +87,10 @@
 | **Requisito** | PS-REQ-002 · 🔴 Crítica (teste de fumaça) |
 | **Passos** | 1. Abrir o formulário de cadastro.<br>2. Inserir um User ID novo com letras e números (padrão `QAFab` + data e hora).<br>3. Preencher os demais campos com dados válidos.<br>4. Clicar em **Save Account Information**.<br>5. Clicar em **Sign Out**.<br>6. Fazer login com o User ID e a senha `Senha123`. |
 | **Resultado esperado** | Passo 4: cadastro bem-sucedido e redirecionamento para a página principal (resultado definido na tarefa do curso).<br>Passo 6: o login funciona e o nome da conta aparece na página. |
-| **Dado usado / Resultado atual** | |
-| **Status / Evidência** | ⏳ · `evidencias/PS-TC-003.png` |
+| **Dado usado** | User ID `QAFab0311261210` · First/Last name `teste1` · senha de teste (não publicada) |
+| **Resultado atual** | Passo 4: cadastro concluído e redirecionamento para a página principal com a mensagem "Welcome teste1!". A página **My Account** mostra o User ID e os dados salvos.<br>Passo 6: login com o novo User ID funcionou ("Welcome teste1!"). |
+| **Data da execução** | 03/11/2026 |
+| **Status / Evidência** | ✅ **Passou** · [`PS-TC-003-passo4.jpg`](../evidencias/PS-TC-003-passo4.jpg) · [`PS-TC-003-passo6-login.jpg`](../evidencias/PS-TC-003-passo6-login.jpg) |
 
 ## PS-TC-004 — Não aceita User ID vazio *(premissa Q-01)*
 | Campo | Descrição |

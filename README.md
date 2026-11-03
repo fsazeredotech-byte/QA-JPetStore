@@ -38,7 +38,7 @@ QA-JPetStore/
 |---|---|---|---|---|
 | PS-TC-001 | Não aceita User ID já existente | REQ-001 | 🟠 Alta | ⏳ A executar |
 | PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ⏳ A executar |
-| PS-TC-003 | Aceita letras e números (cadastro e login) | REQ-002 | 🔴 Crítica | ⏳ A executar |
+| PS-TC-003 | Aceita letras e números (cadastro e login) | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Premissa | 🟠 Alta | ⏳ A executar |
 | PS-TC-005 | Não aceita espaços | REQ-002 | 🟡 Média | ⏳ A executar |
 | PS-TC-006 | Não aceita letras acentuadas | REQ-002 | 🟡 Média | ⏳ A executar |
