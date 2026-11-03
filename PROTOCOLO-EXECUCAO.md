@@ -63,12 +63,14 @@ Protocolo criado pelo ChatGPT a pedido do testador, revisado e adaptado pelo Cla
 ## 4. 🗂️ Nome dos arquivos
 
 ```
-CASO_DATA_HORA_TENTATIVA_ETAPA.png
+CASO_DATA_HORA_TENTATIVA_ETAPA.png   (ou .jpg)
 PS-TC-002c_20261103_142501_T01_01-antes-salvar.png
 PS-TC-002c_20261103_142501_T01_02-depois-salvar.png
 PS-TC-002c_20261103_142501_T01_05-my-account.png
 ```
 - Use o mesmo horário em todos os prints da tentativa. Uma repetição vira **T02**.
+- Os formatos `.png` e `.jpg` são aceitos (as capturas feitas pelo navegador do app são `.jpg`).
+- Se alguém além do testador preencher campos, clicar ou capturar prints, registre isso no campo **Execução** do caso.
 - 💡 Se ficar difícil, mande os prints com qualquer nome e diga a etapa de cada um; eles são renomeados antes de publicar.
 
 ## 5. ✍️ Como escrever o resultado
@@ -105,6 +107,7 @@ PS-TC-002c_20261103_142501_T01_05-my-account.png
 | Caso / variação / tentativa | |
 | Data, hora e fuso | |
 | Ambiente | A01 |
+| Execução (quem fez cada parte) | |
 | Requisito ou premissa | |
 | Dado planejado | |
 | Dado usado | User ID exato; espaços e quantidade; senha não publicada |

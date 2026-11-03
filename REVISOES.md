@@ -1,6 +1,6 @@
 # 🔄 Histórico de revisões
 
-Este arquivo registra como os casos de teste evoluíram depois de revisões, como acontece num time de QA real. A versão anterior de cada arquivo continua disponível no [histórico de commits](../../commits/main).
+Este arquivo registra como os casos de teste evoluíram depois de revisões, como acontece num time de QA real. A versão anterior de cada arquivo continua disponível no [histórico de commits](https://github.com/fsazeredotech-byte/QA-JPetStore/commits/main).
 
 ---
 

@@ -5,7 +5,7 @@
 **Requisitos:** PS-REQ-001 (User ID único) · PS-REQ-002 (User ID apenas alfanumérico, letras latinas) — fonte: tarefa do curso Mate Academy
 **Versão do documento:** 3 (revisada — ver [`REVISOES.md`](../REVISOES.md)) · **Como executar:** [`PROTOCOLO-EXECUCAO.md`](../PROTOCOLO-EXECUCAO.md)
 **Ambiente A01:** navegador integrado do app Claude Desktop 4.4212.0 (Chromium 152.0.7977.167) · Windows 10 64-bit
-**Execuções:** a partir de 03/11/2026 · **Executado por:** Fabricio S Azeredo
+**Execuções:** a partir de 03/11/2026 · **Executado por:** Fabricio S Azeredo, com apoio do Claude em algumas etapas (detalhado em **Execução** em cada caso)
 
 ---
 
@@ -68,6 +68,7 @@
 | **Dado usado** | User ID `QAFab0311261210` (o mesmo do PS-TC-003) |
 | **Resultado atual** | Passo 4: em vez de uma mensagem de erro, apareceu **"HTTP Status 500 – Internal Server Error"** com stack trace e SQL (`DuplicateKeyException`, `PK_ACCOUNT`). A conta duplicada não foi criada.<br>Passo 5: o login com a conta original funcionou ("Welcome teste1!"). Na página My Account, User ID, nome e e-mail foram conferidos, sem alteração observada (sem print publicado, porque a página contém dados não fictícios). |
 | **Data da execução** | 03/11/2026 |
+| **Execução** | Testador: preencheu e salvou o formulário e fez o login de verificação. Claude: capturou o print do erro. |
 | **Status / Evidência** | ❌ **Falhou** → [BUG-001](../bug-reports/BUG-001.md) · [`BUG-001-erro-500.jpg`](../evidencias/BUG-001-erro-500.jpg) |
 
 ## PS-TC-002 — Não aceita caracteres especiais
@@ -76,6 +77,7 @@
 | **Requisito** | PS-REQ-002 · 🟠 Alta |
 | **Passos** | 1. Abrir o formulário de cadastro.<br>2. Inserir o User ID da tabela abaixo.<br>3. Preencher os demais campos com dados válidos.<br>4. Clicar em **Save Account Information**.<br>5. Repetir para cada dado. |
 | **Resultado esperado** | O sistema exibe um erro informando que o User ID deve conter apenas letras e números, e a conta não é criada. |
+| **Execução** | 002-a: campos (menos a senha) preenchidos por script do Claude; senha e login pelo testador. 002-b: campos fictícios digitados pelo Claude; User ID, senha e login pelo testador. 002-c T02: **100% pelo testador**; prints capturados pelo Claude. |
 
 | Variação | Dado | Resultado atual | Status | Evidência |
 |---|---|---|---|---|
@@ -94,6 +96,7 @@
 | **Dado usado** | User ID `QAFab0311261210` · First/Last name `teste1` · senha de teste (não publicada) · ⚠️ os demais campos **não** usaram os dados fictícios planejados |
 | **Resultado atual** | Passo 4: cadastro concluído e redirecionamento para a página principal com a mensagem "Welcome teste1!". A página **My Account** mostra o User ID e os dados salvos.<br>Passo 6: login com o novo User ID funcionou ("Welcome teste1!"). |
 | **Data da execução** | 03/11/2026 |
+| **Execução** | 100% pelo testador. Claude: capturou o print. |
 | **Status / Evidência** | ✅ **Passou** · [`PS-TC-003_welcome-teste1.jpg`](../evidencias/PS-TC-003_welcome-teste1.jpg) |
 | **Limitação da evidência** | A tela "Welcome teste1!" é idêntica após o cadastro (passo 4) e após o login (passo 6), por isso **um único print** é publicado e ele **não distingue** as duas etapas. A confirmação do passo 6 e do User ID na My Account foi feita pelo testador, sem print publicado. Próximas execuções seguem o protocolo, com prints distintos por etapa. |
 
@@ -106,6 +109,7 @@
 | **Dado usado** | User ID vazio (conferido: nenhum caractere) · dados fictícios do documento · senha de teste (não publicada) |
 | **Resultado atual** | O formulário voltou com os dados preenchidos e o cadastro não foi concluído na interface, mas **nenhuma mensagem de erro apareceu**. No código da página, o campo User ID recebeu `class="error"`, sem destaque visível. |
 | **Data da execução** | 03/11/2026 14:38 · A01 |
+| **Execução** | Claude (a pedido do testador): completou os campos fictícios, capturou os prints e clicou em Save. Testador: digitou a senha e parte dos dados. O User ID vazio foi conferido no código da página. |
 | **Status / Evidência** | ❌ **Falhou sob a premissa Q-01** → [BUG-004](../bug-reports/BUG-004.md) · [01](../evidencias/PS-TC-004_20261103_143800_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-004_20261103_143800_T01_02-depois-salvar.jpg) |
 
 ## PS-TC-005 — Não aceita espaços *(premissa Q-04)*
@@ -117,10 +121,10 @@
 
 | Variação | Dado | Resultado atual | Status | Evidência |
 |---|---|---|---|---|
-| 005-a | `Test User` (espaço no meio) | | ⏳ | `PS-TC-005a.png` |
-| 005-b | ` Teste123` (espaço no início) | | ⏳ | `PS-TC-005b.png` |
-| 005-c | `Teste123 ` (espaço no fim) | | ⏳ | `PS-TC-005c.png` |
-| 005-d | `   ` (só espaços) | | ⏳ | `PS-TC-005d.png` |
+| 005-a | `Test User` (espaço no meio) | | ⏳ | conforme o protocolo |
+| 005-b | ` Teste123` (espaço no início) | | ⏳ | conforme o protocolo |
+| 005-c | `Teste123 ` (espaço no fim) | | ⏳ | conforme o protocolo |
+| 005-d | `   ` (só espaços) | | ⏳ | conforme o protocolo |
 
 ## PS-TC-006 — Não aceita letras acentuadas *(premissa Q-02)*
 | Campo | Descrição |
@@ -129,7 +133,7 @@
 | **Passos** | Os mesmos do PS-TC-002, com o dado `Usuário1`. |
 | **Resultado esperado** | O sistema exibe um erro informando que o User ID deve conter apenas letras (A–Z) e números, e a conta não é criada. |
 | **Resultado atual** | |
-| **Status / Evidência** | ⏳ · `evidencias/PS-TC-006.png` |
+| **Status / Evidência** | ⏳ · conforme o protocolo |
 
 ## PS-TC-007 — Não aceita alfabeto não latino
 | Campo | Descrição |
@@ -138,7 +142,7 @@
 | **Passos** | Os mesmos do PS-TC-002, com o dado `用户123`. |
 | **Resultado esperado** | O sistema exibe um erro informando que o User ID deve conter apenas letras latinas e números, e a conta não é criada. |
 | **Resultado atual** | |
-| **Status / Evidência** | ⏳ · `evidencias/PS-TC-007.png` |
+| **Status / Evidência** | ⏳ · conforme o protocolo |
 
 ## PS-TC-008 — Aceita User ID só com letras *(premissa Q-06)*
 | Campo | Descrição |
@@ -147,7 +151,7 @@
 | **Passos** | Os mesmos do PS-TC-003 (passos 1–4), com um ID novo só com letras (ex.: `QAFabTeste`). |
 | **Resultado esperado** | Cadastro bem-sucedido. |
 | **Dado usado / Resultado atual** | |
-| **Status / Evidência** | ⏳ · `evidencias/PS-TC-008.png` |
+| **Status / Evidência** | ⏳ · conforme o protocolo |
 
 ## PS-TC-009 — Aceita User ID só com números *(premissa Q-06)*
 | Campo | Descrição |
@@ -156,7 +160,7 @@
 | **Passos** | Os mesmos do PS-TC-003 (passos 1–4), com um ID novo só com números (ex.: a data e hora `0311261205`). |
 | **Resultado esperado** | Cadastro bem-sucedido. |
 | **Dado usado / Resultado atual** | |
-| **Status / Evidência** | ⏳ · `evidencias/PS-TC-009.png` |
+| **Status / Evidência** | ⏳ · conforme o protocolo |
 
 ---
 

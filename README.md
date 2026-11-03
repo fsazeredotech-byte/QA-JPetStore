@@ -76,8 +76,8 @@ Este portfólio foi desenvolvido com **apoio de IA**, de forma transparente. Os 
 
 | Quem | Papel |
 |---|---|
-| 👤 **Fabricio S Azeredo** | Executou todos os testes na aplicação, encontrou e confirmou os bugs, decidiu severidade e prioridade, aprovou cada alteração e conduziu a revisão entre as IAs |
-| 🟣 **Claude (Anthropic)** | Apoio na redação e organização da documentação, captura e proteção das evidências, envio para o GitHub |
+| 👤 **Fabricio S Azeredo** | Executou os testes na aplicação (sozinho ou acompanhado pelo Claude; ver a coluna "Execução" de cada caso), digitou todas as senhas, confirmou os bugs, decidiu severidade e prioridade, aprovou cada alteração, enviou parte dos arquivos pelo site do GitHub e conduziu a revisão entre as IAs |
+| 🟣 **Claude (Anthropic)** | Redação e organização da documentação, captura e proteção das evidências, envio de parte dos arquivos para o GitHub e, a pedido do testador, preenchimento de campos e cliques em alguns testes (registrado em cada caso) |
 | 🟢 **ChatGPT (OpenAI)** | Revisão crítica independente dos casos e dos bugs, e protocolo de execução |
 
 As revisões entre as duas IAs, e o que mudou por causa delas, estão registradas em [`REVISOES.md`](REVISOES.md).
