@@ -45,7 +45,7 @@
 | ID | Resumo | Req. | Prioridade | Status |
 |---|---|---|---|---|
 | PS-TC-001 | Não aceita User ID já existente | REQ-001 | 🟠 Alta | ❌ Falhou (BUG-001) |
-| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ⏳ |
+| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ❌ 002-a falhou (BUG-002) · 002-b/c ⏳ |
 | PS-TC-003 | Aceita letras e números — cadastro e login | REQ-002 | 🔴 Crítica | ✅ Passou |
 | PS-TC-004 | Não aceita User ID vazio | Q-01 | 🟠 Alta | ⏳ |
 | PS-TC-005 | Não aceita espaços (meio, início, fim, só espaços) | REQ-002 / Q-04 | 🟡 Média | ⏳ |
@@ -79,7 +79,7 @@
 
 | Variação | Dado | Resultado atual | Status | Evidência |
 |---|---|---|---|---|
-| 002-a | `User!123` | | ⏳ | `PS-TC-002a.png` |
+| 002-a | `User!123` | Nenhum erro: a conta foi criada e o login funcionou; My Account mostra `User!123` (03/11/2026) | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [`BUG-002-conta-criada.jpg`](../evidencias/BUG-002-conta-criada.jpg) |
 | 002-b | `User@123` | | ⏳ | `PS-TC-002b.png` |
 | 002-c | `User#123` | | ⏳ | `PS-TC-002c.png` |
 
