@@ -24,6 +24,7 @@ Este projeto documenta testes manuais da funcionalidade **User Registration** (c
 ```
 QA-JPetStore/
 ├── README.md                          ← esta página
+├── REVISOES.md                        ← histórico de revisões
 ├── casos-de-teste/
 │   └── casos-de-teste-cadastro.md     ← casos de teste manuais
 ├── evidencias/                        ← prints da execução (um por caso)
@@ -31,17 +32,23 @@ QA-JPetStore/
     └── modelo-bug-report.md           ← modelo usado nos relatórios
 ```
 
-## ✅ Resumo dos casos de teste
+## ✅ Resumo dos casos de teste (versão 2)
 
 | ID | Resumo | Requisito | Prioridade | Status |
 |---|---|---|---|---|
 | PS-TC-001 | Não aceita User ID já existente | REQ-001 | 🟠 Alta | ⏳ A executar |
-| PS-TC-002 | Não aceita caracteres especiais | REQ-002 | 🟠 Alta | ⏳ A executar |
-| PS-TC-003 | Aceita letras e números | REQ-002 | 🔴 Crítica | ⏳ A executar |
-| PS-TC-004 | Não aceita User ID vazio | REQ-002 | 🟠 Alta | ⏳ A executar |
-| PS-TC-005 | Não aceita espaço no User ID | REQ-002 | 🟡 Média | ⏳ A executar |
-| PS-TC-006 | Não aceita letras não latinas | REQ-002 | 🟡 Média | ⏳ A executar |
-| PS-TC-007 | Unicidade não depende de maiúsculas/minúsculas | REQ-001 | 🟡 Média | ⏳ A executar |
+| PS-TC-002 | Não aceita caracteres especiais (`!` `@` `#`) | REQ-002 | 🟠 Alta | ⏳ A executar |
+| PS-TC-003 | Aceita letras e números (cadastro e login) | REQ-002 | 🔴 Crítica | ⏳ A executar |
+| PS-TC-004 | Não aceita User ID vazio | Premissa | 🟠 Alta | ⏳ A executar |
+| PS-TC-005 | Não aceita espaços | REQ-002 | 🟡 Média | ⏳ A executar |
+| PS-TC-006 | Não aceita letras acentuadas | REQ-002 | 🟡 Média | ⏳ A executar |
+| PS-TC-007 | Não aceita alfabeto não latino | REQ-002 | 🟡 Média | ⏳ A executar |
+| PS-TC-008 | Aceita User ID só com letras | REQ-002 | 🟡 Média | ⏳ A executar |
+| PS-TC-009 | Aceita User ID só com números | REQ-002 | 🟡 Média | ⏳ A executar |
+| PS-TC-P01 | Unicidade com maiúsculas/minúsculas | REQ-001 | 🟡 Média | ⏸️ Pendente de esclarecimento |
+| PS-TC-E01 | Exploratório: User ID muito longo | — | 🟢 Baixa | ⏳ A executar |
+
+🔄 **Os casos passaram por revisão por pares.** Veja em [`REVISOES.md`](REVISOES.md) os erros encontrados na versão 1, as correções e o que aprendi.
 
 Detalhes completos em [`casos-de-teste/casos-de-teste-cadastro.md`](casos-de-teste/casos-de-teste-cadastro.md).
 
