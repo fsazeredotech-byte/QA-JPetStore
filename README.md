@@ -39,7 +39,7 @@ QA-JPetStore/
 
 | ✅ Passou | ❌ Falhou | ⏳ A executar | ⏸️ Pendente | 🐞 Bugs abertos |
 |---|---|---|---|---|
-| 1 caso (003) | 6 casos (001; 002; 004 e 006 sob premissa; 005-a e 005-d) | 4 casos (007, 008, 009, E01) | 1 (P01) + 005-b/c (Q-04) | 5 |
+| 1 caso (003) | 5 casos (001; 002; 004 e 006 sob premissa; 005 nas variações a e d) | 4 casos (007, 008, 009, E01) | 1 (P01) + 005-b/c (Q-04) | 5 |
 
 ## ✅ Resumo dos casos de teste (versão 3.2)
 
