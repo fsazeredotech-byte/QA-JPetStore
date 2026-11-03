@@ -4,6 +4,30 @@ Este arquivo registra como os casos de teste evoluíram depois de revisões, com
 
 ---
 
+## Versão 3.2 — 03/11/2026 · 3ª revisão do ChatGPT
+**Revisores:** ChatGPT (revisão) e Claude (análise e correção) · **Decisão final:** Fabricio S Azeredo
+
+**Lição principal:** *os relatórios de bug precisam seguir o mesmo rigor do protocolo.* Os bugs escritos antes do protocolo ainda tinham generalizações.
+
+### 🔴 Erros corrigidos
+| Onde | Problema | Correção |
+|---|---|---|
+| Evidências do 002-c | `T01_02` era idêntico ao `BUG-001-erro-500.jpg`, e `T02_02` era idêntico ao `PS-TC-002b-apos-salvar.jpg` | Eram **capturas novas**, mas de telas visualmente idênticas. Isso foi registrado em cada caso, e o protocolo agora pede o **relógio visível** nos prints |
+| BUG-004 | "Não grava dados inválidos", mas o banco não foi verificado | Trocado por "cadastro não confirmado na interface; banco não verificado" |
+| BUG-003 | "O servidor devolve a senha": foi visto só no **DOM**; a resposta HTTP não foi inspecionada | O texto agora diz exatamente onde foi observado |
+| BUG-003 | "Sempre" e "afeta todos os cadastros" | Limitado às execuções observadas no ambiente A01 |
+| BUG-002 | Os passos mandavam cadastrar `User!123`, que já existe (quem reproduzisse cairia no erro 500) | Os passos agora pedem um ID novo com símbolo |
+| BUG-001 | "Acontece sempre"; e a frequência dizia que uma tentativa teve apoio do Claude, o que não aconteceu | Frequência documentada (2/2, ambas pelo testador) |
+| Campo "Execução" | Descrições vagas ou divergentes entre caso e bug (002-a, 002-c T01, 004, 001) | Harmonizado, detalhando quem preencheu, quem clicou e quem capturou |
+| Versão 3.1 | Dizia que o HTML foi "incluído como evidência" | **Retificação:** é uma **transcrição** do código da página, não uma captura de tela |
+
+### 💡 O que aprendi
+- **Telas que não mudam não provam o momento.** Incluir o relógio ou registrar o horário da captura.
+- **Dizer onde algo foi observado** (tela, código da página, resposta do servidor), porque cada lugar prova uma coisa diferente.
+- **Passos de reprodução precisam funcionar para outra pessoa, hoje**, e não só no momento em que eu testei.
+
+---
+
 ## Versão 3.1 — 03/11/2026 · autorrevisão antes da revisão do ChatGPT
 **Revisor:** Claude, a pedido do testador ("o que o ChatGPT vai reclamar?") · **Decisão final:** Fabricio S Azeredo
 
