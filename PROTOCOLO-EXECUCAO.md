@@ -58,6 +58,8 @@ Protocolo criado pelo ChatGPT a pedido do testador, revisado e adaptado pelo Cla
 - `Windows + Shift + S` para capturar.
 - Cubra senhas e dados pessoais com um **retângulo opaco** (preto), nunca com borrão ou marca-texto.
 - Salve, **abra de novo para conferir** e só depois envie.
+- ⏱️ **Inclua algo que mude a cada captura**, como o **relógio da barra de tarefas** do Windows (capture a tela inteira ou deixe o relógio visível). Telas como o erro 500 ou a página principal deslogada são **idênticas pixel por pixel** em momentos diferentes, e o print sozinho não prova quando foi tirado.
+- Se o print for capturado só da página (sem relógio), registre o **horário da captura** no resultado.
 - Não capture outras abas, notificações ou o seu perfil.
 
 ## 4. 🗂️ Nome dos arquivos

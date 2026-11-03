@@ -41,7 +41,7 @@ QA-JPetStore/
 |---|---|---|---|---|
 | 1 caso (003) | 3 casos (001; 002 nas 3 variações; 004 sob premissa) | 6 casos | 1 (P01) | 4 |
 
-## ✅ Resumo dos casos de teste (versão 3)
+## ✅ Resumo dos casos de teste (versão 3.2)
 
 | ID | Resumo | Requisito | Prioridade | Status |
 |---|---|---|---|---|

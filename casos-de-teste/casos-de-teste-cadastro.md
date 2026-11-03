@@ -3,7 +3,7 @@
 **Aplicação:** [JPetStore — Mate Academy](https://jpetstore.mate.academy/actions/Catalog.action)
 **Funcionalidade:** User Registration — **escopo: somente o campo User ID** (não cobre o cadastro completo)
 **Requisitos:** PS-REQ-001 (User ID único) · PS-REQ-002 (User ID apenas alfanumérico, letras latinas) — fonte: tarefa do curso Mate Academy
-**Versão do documento:** 3 (revisada — ver [`REVISOES.md`](../REVISOES.md)) · **Como executar:** [`PROTOCOLO-EXECUCAO.md`](../PROTOCOLO-EXECUCAO.md)
+**Versão do documento:** 3.2 (revisada — ver [`REVISOES.md`](../REVISOES.md)) · **Como executar:** [`PROTOCOLO-EXECUCAO.md`](../PROTOCOLO-EXECUCAO.md)
 **Ambiente A01:** navegador integrado do app Claude Desktop 4.4212.0 (Chromium 152.0.7977.167) · Windows 10 64-bit
 **Execuções:** a partir de 03/11/2026 · **Executado por:** Fabricio S Azeredo, com apoio do Claude em algumas etapas (detalhado em **Execução** em cada caso)
 
@@ -68,7 +68,7 @@
 | **Dado usado** | User ID `QAFab0311261210` (o mesmo do PS-TC-003) |
 | **Resultado atual** | Passo 4: em vez de uma mensagem de erro, apareceu **"HTTP Status 500 – Internal Server Error"** com stack trace e SQL (`DuplicateKeyException`, `PK_ACCOUNT`). A conta duplicada não foi criada.<br>Passo 5: o login com a conta original funcionou ("Welcome teste1!"). Na página My Account, User ID, nome e e-mail foram conferidos, sem alteração observada (sem print publicado, porque a página contém dados não fictícios). |
 | **Data da execução** | 03/11/2026 |
-| **Execução** | Testador: preencheu e salvou o formulário e fez o login de verificação. Claude: capturou o print do erro. |
+| **Execução** | Tentativa registrada aqui (`QAFab0311261210`): **testador** preencheu, salvou e fez o login de verificação; **Claude** capturou o print do erro. A segunda ocorrência, citada no BUG-001, também foi feita pelo testador. |
 | **Status / Evidência** | ❌ **Falhou** → [BUG-001](../bug-reports/BUG-001.md) · [`BUG-001-erro-500.jpg`](../evidencias/BUG-001-erro-500.jpg) |
 
 ## PS-TC-002 — Não aceita caracteres especiais
@@ -77,14 +77,14 @@
 | **Requisito** | PS-REQ-002 · 🟠 Alta |
 | **Passos** | 1. Abrir o formulário de cadastro.<br>2. Inserir o User ID da tabela abaixo.<br>3. Preencher os demais campos com dados válidos.<br>4. Clicar em **Save Account Information**.<br>5. Repetir para cada dado. |
 | **Resultado esperado** | O sistema exibe um erro informando que o User ID deve conter apenas letras e números, e a conta não é criada. |
-| **Execução** | 002-a: campos (menos a senha) preenchidos por script do Claude; senha e login pelo testador. 002-b: campos fictícios digitados pelo Claude; User ID, senha e login pelo testador. 002-c T02: **100% pelo testador**; prints capturados pelo Claude. |
+| **Execução** | 002-a: todos os campos, inclusive o User ID, preenchidos por script do Claude; senha pelo testador; clique em Save pelo Claude; login pelo testador. 002-b: campos fictícios digitados pelo Claude; User ID, senha, clique em Save e login pelo testador. 002-c T01: formulário preenchido e salvo pelo testador; prints pelo Claude. 002-c T02: **100% pelo testador**; prints capturados pelo Claude. |
 
 | Variação | Dado | Resultado atual | Status | Evidência |
 |---|---|---|---|---|
 | 002-a | `User!123` | Nenhum erro: a conta foi criada e o login funcionou; My Account mostra `User!123` (03/11/2026) | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [`BUG-002-conta-criada.jpg`](../evidencias/BUG-002-conta-criada.jpg) |
 | 002-b | `User@123` | Nenhum erro; a conta foi criada (o login manual funcionou e a repetição gerou o erro 500 de duplicidade). Não houve login automático. | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [`PS-TC-002b-apos-salvar.jpg`](../evidencias/PS-TC-002b-apos-salvar.jpg) |
-| 002-c | Planejado `User#123` · **T01** usado `Qa#1103125501` | ⚠️ **Inconclusiva**: erro 500 de duplicidade ao salvar (possível envio duplicado). Nada concluído; repetida como T02. | — | [01](../evidencias/PS-TC-002c_20261103_125501_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-002c_20261103_125501_T01_02-depois-salvar.jpg) |
-| 002-c | **T02** usado `Qa#1103125930` (03/11/2026 12:59, A01) | Após salvar: página principal com Sign In, sem mensagem de erro. 1º login feito sem o print 03; refeitos o logout e o login para capturar as etapas 03 e 04. Login autenticado ("Welcome TESTE!"). My Account mostra **User ID `Qa#1103125930`**. Criação com `#` confirmada pela interface. | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [01](../evidencias/PS-TC-002c_20261103_125930_T02_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-002c_20261103_125930_T02_02-depois-salvar.jpg) · [03](../evidencias/PS-TC-002c_20261103_125930_T02_03-antes-login.jpg) · [04](../evidencias/PS-TC-002c_20261103_125930_T02_04-depois-login.jpg) · [05](../evidencias/PS-TC-002c_20261103_125930_T02_05-my-account.jpg) |
+| 002-c | Planejado `User#123` · **T01** usado `Qa#1103125501` | ⚠️ **Inconclusiva**: erro 500 de duplicidade ao salvar (possível envio duplicado). Nada concluído; repetida como T02. ⚠️ O print 02 é idêntico, byte a byte, ao `BUG-001-erro-500.jpg`: é uma captura nova (12:57), mas a página de erro 500 é visualmente idêntica. | — | [01](../evidencias/PS-TC-002c_20261103_125501_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-002c_20261103_125501_T01_02-depois-salvar.jpg) |
+| 002-c | **T02** usado `Qa#1103125930` (03/11/2026 12:59, A01) | Após salvar: página principal com Sign In, sem mensagem de erro. 1º login feito sem o print 03; refeitos o logout e o login para capturar as etapas 03 e 04. Login autenticado ("Welcome TESTE!"). My Account mostra **User ID `Qa#1103125930`**. Criação com `#` confirmada pela interface. ⚠️ O print 02 é idêntico, byte a byte, ao `PS-TC-002b-apos-salvar.jpg`: é uma captura nova (12:59) da página principal deslogada, que é visualmente idêntica. A prova da criação está nos prints 03 a 05. | ❌ Falhou → [BUG-002](../bug-reports/BUG-002.md) | [01](../evidencias/PS-TC-002c_20261103_125930_T02_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-002c_20261103_125930_T02_02-depois-salvar.jpg) · [03](../evidencias/PS-TC-002c_20261103_125930_T02_03-antes-login.jpg) · [04](../evidencias/PS-TC-002c_20261103_125930_T02_04-depois-login.jpg) · [05](../evidencias/PS-TC-002c_20261103_125930_T02_05-my-account.jpg) |
 
 ## PS-TC-003 — Aceita letras e números (cadastro e login)
 | Campo | Descrição |
@@ -109,7 +109,7 @@
 | **Dado usado** | User ID vazio (conferido: nenhum caractere) · dados fictícios do documento · senha de teste (não publicada) |
 | **Resultado atual** | O formulário voltou com os dados preenchidos e o cadastro não foi concluído na interface, mas **nenhuma mensagem de erro apareceu**. No código da página, o campo User ID recebeu `class="error"`, sem destaque visível. |
 | **Data da execução** | 03/11/2026 14:38 · A01 |
-| **Execução** | Claude (a pedido do testador): completou os campos fictícios, capturou os prints e clicou em Save. Testador: digitou a senha e parte dos dados. O User ID vazio foi conferido no código da página. |
+| **Execução** | **Testador:** digitou a senha, First name, Last name e um e-mail. **Claude** (a pedido do testador): trocou o e-mail para o fictício, digitou os demais campos, conferiu no código da página que o User ID estava vazio, capturou os prints e clicou em Save. |
 | **Status / Evidência** | ❌ **Falhou sob a premissa Q-01** → [BUG-004](../bug-reports/BUG-004.md) · [01](../evidencias/PS-TC-004_20261103_143800_T01_01-antes-salvar.jpg) · [02](../evidencias/PS-TC-004_20261103_143800_T01_02-depois-salvar.jpg) |
 
 ## PS-TC-005 — Não aceita espaços *(premissa Q-04)*
